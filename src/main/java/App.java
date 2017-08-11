@@ -22,7 +22,8 @@ public class App {
             String description = req.queryParams("description");
             String[] attendeeNames = req.queryParamsValues("attendee");
             List<String> attendees = Arrays.asList(attendeeNames);
-            Event event = new Event(name, description, attendees);
+            Event event = new Event(name, description);
+            event.addAttendees(attendees);
             model.put("event", event);
             res.redirect("/");
             return null;
@@ -46,7 +47,24 @@ public class App {
         }, new HandlebarsTemplateEngine());
 //
 //        //show a form to update an event
+            get("/events/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEvent);
+            model.put("editEvent", editEvent);
+            return new ModelAndView(model, "form.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        //process a form to update an event
+        post("/events/:id/update", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newName = req.queryParams("name");
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEvent);
+            editEvent.updateName(newName);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
+
 //        //delete an event
 //        }
     }

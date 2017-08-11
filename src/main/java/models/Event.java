@@ -58,10 +58,13 @@ public class Event {
         return instances.get(id-1);
     }
 
-    public List<String> addAttendees(String attendeeName) {
+    public List<String> addAttendees(List<String> attendeeNames) {
         List <String> attendees = getAttendees();
-        attendees.add(attendeeName);
-        return attendees;
+        this.attendees = attendeeNames;
+        return this.attendees;
+    }
+    public void updateName(String name) {
+        this.name = name;
     }
 }
 
