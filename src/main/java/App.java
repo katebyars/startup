@@ -46,7 +46,7 @@ public class App {
             return new ModelAndView(model, "event-detail.hbs");
         }, new HandlebarsTemplateEngine());
 //
-//        //show a form to update an event
+//        //show a form to update an event name
             get("/events/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEvent = Integer.parseInt(req.params("id"));
@@ -55,7 +55,7 @@ public class App {
             return new ModelAndView(model, "form.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        //process a form to update an event
+//        //process a form to update an event name
         post("/events/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String newName = req.queryParams("name");
@@ -65,7 +65,5 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        //delete an event
-//        }
     }
 }

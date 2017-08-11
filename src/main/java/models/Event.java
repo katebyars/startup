@@ -11,7 +11,7 @@ public class Event {
     private int id;
 
 
-    public  Event (String name, String description) {
+    public Event(String name, String description) {
         this.name = name;
         this.description = description;
         this.attendees = attendees;
@@ -39,12 +39,12 @@ public class Event {
         return attendees;
     }
 
-    public static ArrayList<Event> getAllEvents(){
+    public static ArrayList<Event> getAllEvents() {
 
         return instances;
     }
 
-    public static void clearAllEvents () {
+    public static void clearAllEvents() {
 
         instances.clear();
     }
@@ -53,18 +53,23 @@ public class Event {
 
         return id;
     }
+
     public static Event findById(int id) {
 
-        return instances.get(id-1);
+        return instances.get(id - 1);
     }
 
     public List<String> addAttendees(List<String> attendeeNames) {
-        List <String> attendees = getAttendees();
+        List<String> attendees = getAttendees();
         this.attendees = attendeeNames;
         return this.attendees;
     }
+
     public void updateName(String name) {
         this.name = name;
     }
-}
 
+    public void updateDescription(String description) {
+        this.description = name;
+    }
+}
