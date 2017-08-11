@@ -1,13 +1,5 @@
 {{#partial "content"}}
-
-    {{#if editEvent}}
-        <h1>Edit this Event!</h1>
-        <form action="/events/{{editEvent.id}}/update" method="post">
-            <label for="name">Change event name</label>
-            <input id="name" name="name" type="text" value="{{editEvent.name}}"><br>
-
-    {{else}}
-            <h1>Add a new Event!</h1>
+    <h1>Add more attendees!</h1>
 
         <form action="/events/new" method="post">
             <label for="name">Event Name</label>
@@ -27,10 +19,8 @@
 
             <label for="attendee">Attendee</label>
             <input id="attendee" name="attendee" type="text"><br>
-
-    {{/if}}
-        <button type="submit" class="btn btn-default">Create!</button>
-    </form>
+            <button type="submit" class="btn btn-default">Add!</button>
+        </form>
 {{/partial}}
 
 {{> layout.hbs}}

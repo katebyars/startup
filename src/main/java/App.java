@@ -65,5 +65,26 @@ public class App {
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
+        //show a page with About
+        get("/about", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "about.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show a form to add more attendees
+        get("/events/:id/attendees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "addAttendees.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //process a form to update attendees
+        post("/events/:id/attendees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String newName = req.queryParams("name");
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEvent);
+            editEvent.updateName(newName);
+            return new ModelAndView(model, "success.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
