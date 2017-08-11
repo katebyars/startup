@@ -20,7 +20,9 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String description = req.queryParams("description");
-            Event event = new Event(name, description);
+            String[] attendeeNames = req.queryParamsValues("attendee");
+            List<String> attendees = Arrays.asList(attendeeNames);
+            Event event = new Event(name, description, attendees);
             model.put("event", event);
             res.redirect("/");
             return null;
@@ -35,13 +37,13 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //show an individual event
-//        get("/posts/:id", (req, res) -> {
-////            Map<String, Object> model = new HashMap<>();
-////            int idOfEvent = Integer.parseInt(req.params("id"));
-////            Event findEvent = Event.findById(idOfPostToFind); //use it to find post
-////            model.put("post", foundPost); //add it to model for template to display
-////            return new ModelAndView(model, "post-detail.hbs"); //individual post page.
-////        }, new HandlebarsTemplateEngine());
+        get("/event/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event findEvent = Event.findById(idOfEvent);
+            model.put("event", findEvent);
+            return new ModelAndView(model, "event-detail.hbs");
+        }, new HandlebarsTemplateEngine());
 //
 //        //show a form to update an event
 //        //process a form to update an event
