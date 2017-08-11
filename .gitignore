@@ -36,6 +36,9 @@ Thumbs.db
 ############
 build/
 .gradle/
+.grade/wrapper
+.idea
+.gitignore
 Gradlew
 Gradlew.bat
 settings.gradle 

@@ -72,4 +72,5 @@ public class Event {
     public void updateDescription(String description) {
         this.description = name;
     }
+
 }
