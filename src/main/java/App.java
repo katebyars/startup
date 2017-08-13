@@ -30,19 +30,18 @@ public class App {
         get("/events/:id/attendees", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEvent = Integer.parseInt(req.params("id"));
-            Event editEvent = Event.findById(idOfEvent);
-            model.put("editEvent", editEvent);
+            Event addAttendees = Event.findById(idOfEvent);
+            model.put("addAttendees", addAttendees);
             return new ModelAndView(model, "form.hbs");
         }, new HandlebarsTemplateEngine());
 //
 //        //process a form to add attendees
         post("/events/:id/attendees", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            String attendeeName = req.queryParams("attendee");
-            System.out.println(attendeeName);
             int idOfEvent = Integer.parseInt(req.params("id"));
-            Event editEvent = Event.findById(idOfEvent);
-            editEvent.addAttendees(attendeeName);
+            String attendeeName = req.queryParams("attendee");
+            Event addAttendees = Event.findById(idOfEvent);
+            addAttendees.addAttendees(attendeeName);
             return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 

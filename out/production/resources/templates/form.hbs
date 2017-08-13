@@ -6,8 +6,8 @@
                 <input id="name" name="name" type="text" value="{{editEvent.name}}"><br>
                 <button type="submit" class="btn btn-default">Go!</button>
             </form>
-        {{else if addAttendee}}
-            <form action="/events/{{editEvent.id}}/attendees" method="post">
+        {{else if addAttendees}}
+            <form action="/events/{{addAttendees.id}}/attendees" method="post">
                 <p>You may add attendees to this event, one at a time.</p>
                 <label for="attendee">Attendee:</label>
                 <input id="attendee" name="attendee" type="text"><br>

@@ -7,6 +7,13 @@ p {
     font-family: sans-serif;
     color: gray;
 }
+ul .attendee {
+    text-align: left;
+    margin-left: 45%;
+    list-style-type: none;
+    font-size: 22px;
+    font-family: sans-serif;
+}
 h4 {
 color: white;
 font-size: 34px;
