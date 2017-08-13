@@ -1,5 +1,4 @@
 package models;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,14 +6,14 @@ public class Event {
     private String name;
     private String description;
     private static ArrayList<Event> instances = new ArrayList<>();
-    private List<String> attendees;
+    private ArrayList<String> attendees = new ArrayList<>();
     private int id;
 
 
     public Event(String name, String description) {
         this.name = name;
         this.description = description;
-        this.attendees = attendees;
+        this.attendees = new ArrayList<>();
         instances.add(this);
         this.id = instances.size();
     }
@@ -55,13 +54,11 @@ public class Event {
     }
 
     public static Event findById(int id) {
-
         return instances.get(id - 1);
     }
 
-    public List<String> addAttendees(List<String> attendeeNames) {
-        List<String> attendees = getAttendees();
-        this.attendees = attendeeNames;
+    public ArrayList<String> addAttendees(String attendeeName) {
+        this.getAttendees().add(attendeeName);
         return this.attendees;
     }
 

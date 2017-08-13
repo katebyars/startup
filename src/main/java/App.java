@@ -20,13 +20,30 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
             String description = req.queryParams("description");
-            String[] attendeeNames = req.queryParamsValues("attendee");
-            List<String> attendees = Arrays.asList(attendeeNames);
             Event event = new Event(name, description);
-            event.addAttendees(attendees);
             model.put("event", event);
             res.redirect("/");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+//        //show a form to add attendees
+        get("/events/:id/attendees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEvent);
+            model.put("editEvent", editEvent);
+            return new ModelAndView(model, "form.hbs");
+        }, new HandlebarsTemplateEngine());
+//
+//        //process a form to add attendees
+        post("/events/:id/attendees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String attendeeName = req.queryParams("attendee");
+            System.out.println(attendeeName);
+            int idOfEvent = Integer.parseInt(req.params("id"));
+            Event editEvent = Event.findById(idOfEvent);
+            editEvent.addAttendees(attendeeName);
+            return new ModelAndView(model, "success.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show all events
@@ -38,16 +55,16 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         //show an individual event
-        get("/event/:id", (req, res) -> {
+        get("/events/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEvent = Integer.parseInt(req.params("id"));
             Event findEvent = Event.findById(idOfEvent);
             model.put("event", findEvent);
             return new ModelAndView(model, "event-detail.hbs");
         }, new HandlebarsTemplateEngine());
-//
+
 //        //show a form to update an event name
-            get("/events/:id/update", (req, res) -> {
+        get("/events/:id/update", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfEvent = Integer.parseInt(req.params("id"));
             Event editEvent = Event.findById(idOfEvent);
