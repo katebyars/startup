@@ -1,3 +1,4 @@
+import models.Attendees;
 import models.Event;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -8,6 +9,20 @@ public class App {
 
     public static void main(String[] args) {
         staticFileLocation("/public");
+//
+//    //delete all attendees from system
+//    void clearAllAttendees();
+//
+//    //delete all attendees from an event
+//    void deleteAllAttendeesFromSingleEvent();
+
+//
+//        //delete an event
+//        void deleteById(int id);
+//
+//        //delete all events
+//        void clearAllEvents();
+
 
         //show a new event form
         get("/events/new", (req, res) -> {
@@ -86,6 +101,15 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "about.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //show a splash page for index
+//
+        //show a form to update an attendee
+        //process a form to update an attendee
+//    void update(int id, String name);
+//
+//    //show a button to delete a single attendee
+        //process a request to delete a single attendee
 
     }
 }
